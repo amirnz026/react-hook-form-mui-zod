@@ -22,7 +22,7 @@ export default function RHFCheckbox<T extends FieldValues>({
   name,
   label,
 }: Props<T>) {
-  const { control } = useFormContext<T>();
+  const { control } = useFormContext();
 
   return (
     <Controller

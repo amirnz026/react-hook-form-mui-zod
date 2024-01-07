@@ -25,7 +25,7 @@ export const schema = z.intersection(
   }),
   z.discriminatedUnion("isTeacher", [
     z.object({
-      isTeacher: z.literal(false),
+      isTeacher: z.literal(false), // switch
     }),
     z.object({
       isTeacher: z.literal(true),
