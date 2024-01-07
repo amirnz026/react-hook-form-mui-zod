@@ -3,6 +3,7 @@ import { Controller, FieldValues, Path, useFormContext } from "react-hook-form";
 import {
   FormControl,
   FormControlLabel,
+  FormHelperText,
   FormLabel,
   Radio,
   RadioGroup,
@@ -27,8 +28,8 @@ export default function RHFRadioGroup<T extends FieldValues>({
     <Controller
       control={control}
       name={name}
-      render={({ field }) => (
-        <FormControl {...field}>
+      render={({ field, fieldState: { error } }) => (
+        <FormControl {...field} error={!!error}>
           <FormLabel>{label}</FormLabel>
           <RadioGroup>
             {options.map((gender) => (
@@ -40,6 +41,7 @@ export default function RHFRadioGroup<T extends FieldValues>({
               />
             ))}
           </RadioGroup>
+          <FormHelperText>{error?.message}</FormHelperText>
         </FormControl>
       )}
     />

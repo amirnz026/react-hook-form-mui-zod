@@ -9,10 +9,12 @@ import { Options } from "../types/options";
 interface Props<T extends FieldValues> {
   name: Path<T>;
   options: Options;
+  label: string;
 }
 export function RHFAutocomplete<T extends FieldValues>({
   name,
   options,
+  label,
 }: Props<T>) {
   const { control } = useFormContext<T>();
 
@@ -30,6 +32,7 @@ export function RHFAutocomplete<T extends FieldValues>({
             onChange(newValue.map((item) => item.id));
           }}
           isOptionEqualToValue={(option, newValue) => option.id === newValue.id}
+          disableCloseOnSelect
           options={options ?? []}
           renderInput={(params) => (
             <TextField
@@ -37,8 +40,8 @@ export function RHFAutocomplete<T extends FieldValues>({
               fullWidth
               inputRef={ref}
               error={!!error}
-              helperText={error && error?.message}
-              label={"test"}
+              helperText={error?.message}
+              label={label}
             />
           )}
           renderOption={(props, option, { selected }) => (

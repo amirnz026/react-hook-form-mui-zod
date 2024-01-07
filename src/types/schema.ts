@@ -11,13 +11,13 @@ export const schema = z.intersection(
         message: "Email not valid",
       }), // textField
 
-    states: z.array(z.string()), // autoComplete
+    states: z.array(z.string()).min(1).max(2), // autoComplete
 
-    gender: z.string(), // radioGroup
+    gender: z.string().min(1), // radioGroup
 
-    languagesSpoken: z.array(z.string()), // toggleButton
+    languagesSpoken: z.array(z.string()),
 
-    skills: z.array(z.object({ id: z.string(), label: z.string() })), // checkbox,
+    skills: z.array(z.string()).max(2), // checkbox,
 
     registrationDateAndTime: z.date(), // dateTimePicker
 
@@ -42,7 +42,7 @@ export type Schema = z.infer<typeof schema>;
 
 export const defaultValues: Schema = {
   emailAddress: "",
-  gender: { id: "", label: "" },
+  gender: "",
   isTeacher: false,
   states: [],
   languagesSpoken: [],

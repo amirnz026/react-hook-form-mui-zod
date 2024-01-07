@@ -28,3 +28,22 @@ export const GENDERS: Options = [
   },
   { id: "2", label: "Female" },
 ];
+
+export const SKILLS: Options = [
+  {
+    id: "1",
+    label: "Productive",
+  },
+  {
+    id: "2",
+    label: "Creative",
+  },
+  {
+    id: "3",
+    label: "Agile",
+  },
+  {
+    id: "4",
+    label: "Problem solver",
+  },
+];
