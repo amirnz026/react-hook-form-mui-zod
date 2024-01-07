@@ -1,24 +1,27 @@
+import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
-import {
-  Container,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  TextField,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
+import { Container, TextField } from "@mui/material";
 
 import { RHFAutocomplete } from "./components/RHFAutocomplete";
+import RHFRadioGroup from "./components/RHFRadioGroup";
+import RHFToggleButtonGroup from "./components/RHFToggleButtonGroup";
 import { Schema } from "./types/schema";
-import { STATES } from "./utils/mockData";
+import { GENDERS, LANGUAGES, STATES } from "./utils/mockData";
 
 export default function App() {
   const {
     register,
     formState: { errors },
+    watch,
   } = useFormContext<Schema>();
+
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) =>
+      console.log(value, name, type)
+    );
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   return (
     <Container>
@@ -28,13 +31,12 @@ export default function App() {
         error={!!errors.emailAddress}
         helperText={errors.emailAddress?.message}
       />
-
       <RHFAutocomplete<Schema> name="states" options={STATES} />
-
-      <RadioGroup {...register("gender")}>
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
-      </RadioGroup>
+      <RHFToggleButtonGroup<Schema>
+        options={LANGUAGES}
+        name="languagesSpoken"
+      />
+      <RHFRadioGroup<Schema> name="gender" options={GENDERS} label="Gender" />
     </Container>
   );
 }

@@ -20,3 +20,11 @@ export const LANGUAGES: Options = [
     label: "Spanish",
   },
 ];
+
+export const GENDERS: Options = [
+  {
+    id: "1",
+    label: "Male",
+  },
+  { id: "2", label: "Female" },
+];

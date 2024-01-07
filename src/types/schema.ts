@@ -42,7 +42,7 @@ export type Schema = z.infer<typeof schema>;
 
 export const defaultValues: Schema = {
   emailAddress: "",
-  gender: "",
+  gender: { id: "", label: "" },
   isTeacher: false,
   states: [],
   languagesSpoken: [],
