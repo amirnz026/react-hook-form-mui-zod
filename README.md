@@ -1,30 +1,15 @@
-# React + TypeScript + Vite
+# React Hook Form Controllers for MUI Components and Zod Schema
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This boilerplate repository provides a collection of React Hook Form controllers for all Material-UI components, along with Zod schema validation for enhanced form handling and data integrity.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Efficient Form Handling:** Leverage React Hook Form's powerful API to manage form state, validation, and submit events seamlessly.
 
-## Expanding the ESLint configuration
+**Material-UI Component Support:** Seamlessly integrate React Hook Form with all Material-UI components, including text fields, selects, buttons, and more.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+**Zod Schema Validation:** Employ Zod's robust schema definition language to validate form data against predefined rules, ensuring data accuracy and consistency.
 
-- Configure the top-level `parserOptions` property like this:
+**Custom Validation Logic:** Implement custom validation logic using Zod's validation functions, providing flexible and tailored validation rules.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+**TypeScript Support:** Utilize TypeScript to enhance type safety and code readability throughout the project.
