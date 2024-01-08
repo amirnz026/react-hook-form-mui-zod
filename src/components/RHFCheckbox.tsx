@@ -9,7 +9,7 @@ import {
   FormLabel,
 } from "@mui/material";
 
-import { Options } from "../types/options";
+import { Options } from "../types/option";
 
 interface Props<T extends FieldValues> {
   options: Options;

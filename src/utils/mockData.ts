@@ -1,4 +1,4 @@
-import { Options } from "../types/options";
+import { Options } from "../types/option";
 
 export const STATES: Options = [
   { id: "1", label: "California" },
