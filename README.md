@@ -6,15 +6,23 @@ This project almost contains all possible combinations with React Hook Form, Mat
 
 ## Components
 
-**Date Time Picker**
-**Date Range Picker**
-**Switch**
-**Checkbox Group**
-**Autocomplete**
-**Radio Group**
-**Toggle Button Group**
-**Discriminated Unions**
-**more...**
+### Date Time Picker
+
+### Date Range Picker
+
+### Switch
+
+### Checkbox Group
+
+### Autocomplete
+
+### Radio Group
+
+### Toggle Button Group
+
+### Discriminated Unions
+
+### more...
 
 ## Features
 
