@@ -21,6 +21,8 @@ export const schema = z.intersection(
 
     registrationDateAndTime: z.date(), // dateTimePicker
 
+    previousEmploymentDateRange: z.date(), // dateRange
+
     salaryRange: z.array(z.number()), // slider
   }),
   z.discriminatedUnion("isTeacher", [
@@ -41,6 +43,7 @@ export const schema = z.intersection(
 export type Schema = z.infer<typeof schema>;
 
 export const defaultValues: Schema = {
+  previousEmploymentDateRange: new Date(),
   emailAddress: "",
   gender: "",
   isTeacher: false,

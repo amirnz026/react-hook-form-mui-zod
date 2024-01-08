@@ -2,6 +2,20 @@
 
 This boilerplate repository provides a collection of React Hook Form controllers for all Material-UI components, along with Zod schema validation for enhanced form handling and data integrity.
 
+This project almost contains all possible combinations with React Hook Form, Material UI and Zod (discriminated unions with Zod and React Hook Form and MUI, customized controller and so much more).
+
+## Components
+
+**Date Time Picker**
+**Date Range Picker**
+**Switch**
+**Checkbox Group**
+**Autocomplete**
+**Radio Group**
+**Toggle Button Group**
+**Discriminated Unions**
+**more...**
+
 ## Features
 
 **Efficient Form Handling:** Leverage React Hook Form's powerful API to manage form state, validation, and submit events seamlessly.
