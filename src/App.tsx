@@ -5,6 +5,8 @@ import { Container, TextField } from "@mui/material";
 
 import { RHFAutocomplete } from "./components/RHFAutocomplete";
 import RHFCheckbox from "./components/RHFCheckbox";
+import { RHFDateRangePicker } from "./components/RHFDateRangePicker";
+import { RHFDateTimePicker } from "./components/RHFDateTimePicker";
 import RHFRadioGroup from "./components/RHFRadioGroup";
 import { RHFSwitch } from "./components/RHFSwitch";
 import RHFToggleButtonGroup from "./components/RHFToggleButtonGroup";
@@ -41,6 +43,14 @@ export default function App() {
       <RHFRadioGroup<Schema> name="gender" options={GENDERS} label="Gender" />
       <RHFCheckbox<Schema> name="skills" options={SKILLS} label="Skills" />
       <RHFSwitch<Schema> name="isTeacher" label="Are you a teacher?" />
+      <RHFDateTimePicker<Schema>
+        name="registrationDateAndTime"
+        label="Registration Date & Time"
+      />
+      <RHFDateRangePicker<Schema>
+        name="formerEmploymentPeriod"
+        label="Former Employment Period"
+      />
     </Container>
   );
 }
