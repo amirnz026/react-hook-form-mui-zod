@@ -35,7 +35,7 @@ export default function RHFRadioGroup<T extends FieldValues>({
             {options?.map((gender) => (
               <FormControlLabel
                 value={gender.id}
-                control={<Radio />}
+                control={<Radio checked={field.value === gender.id} />}
                 label={gender.label}
                 key={gender.id}
               />

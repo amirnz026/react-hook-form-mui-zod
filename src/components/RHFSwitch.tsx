@@ -15,7 +15,10 @@ export function RHFSwitch<T extends FieldValues>({ name, label }: Props<T>) {
       name={name}
       control={control}
       render={({ field }) => (
-        <FormControlLabel control={<Switch {...field} />} label={label} />
+        <FormControlLabel
+          control={<Switch {...field} checked={field.value} />}
+          label={label}
+        />
       )}
     />
   );

@@ -27,7 +27,7 @@ import RHFRadioGroup from "./components/RHFRadioGroup";
 import { RHFSlider } from "./components/RHFSlider";
 import { RHFSwitch } from "./components/RHFSwitch";
 import RHFToggleButtonGroup from "./components/RHFToggleButtonGroup";
-import { useCreateUser } from "./services/mutations";
+import { useCreateUser, useEditUser } from "./services/mutations";
 import {
   useGenders,
   useLanguages,
@@ -44,6 +44,7 @@ export default function App() {
   const gendersQuery = useGenders();
   const skillsQuery = useSkills();
   const createUserMutation = useCreateUser();
+  const editUserMutation = useEditUser();
 
   const [userId, setUserId] = useState("");
   const userQuery = useUser(userId);
@@ -53,28 +54,38 @@ export default function App() {
     register,
     formState: { errors },
     control,
-    watch,
     handleSubmit,
     reset,
+    // watch
+    // trigger
+    // setValue
   } = useFormContext<Schema>();
 
-  useEffect(() => {
-    const subscription = watch((value, { name, type }) =>
-      console.log(value, name, type)
-    );
-    return () => subscription.unsubscribe();
-  }, [watch]);
+  // useEffect(() => {
+  //   const subscription = watch((value, { name, type }) =>
+  //     console.log(value, name, type)
+  //   );
+  //   return () => subscription.unsubscribe();
+  // }, [watch]);
 
   useEffect(() => {
     reset(userQuery.data);
   }, [reset, userQuery.data]);
 
   const isTeacher = useWatch({ control, name: "isTeacher" });
+  const variant = useWatch({ control, name: "variant" });
+  const id = useWatch({ control, name: "id" });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, replace } = useFieldArray({
     control,
     name: "students",
   });
+
+  useEffect(() => {
+    if (!isTeacher) {
+      replace([]);
+    }
+  }, [isTeacher, replace]);
 
   const handleReset = () => {
     reset(defaultValues);
@@ -85,7 +96,11 @@ export default function App() {
   };
 
   const onSubmit: SubmitHandler<Schema> = (data) => {
-    createUserMutation.mutate(data);
+    if (variant === "create") {
+      createUserMutation.mutate(data);
+    } else {
+      editUserMutation.mutate(data);
+    }
   };
 
   return (
@@ -94,7 +109,10 @@ export default function App() {
         <List subheader={<ListSubheader>Users</ListSubheader>}>
           {usersQuery.data?.map((user) => (
             <ListItem disablePadding key={user.id}>
-              <ListItemButton onClick={() => handleUserClick(user.id)}>
+              <ListItemButton
+                onClick={() => handleUserClick(user.id)}
+                selected={id === user.id}
+              >
                 <ListItemText primary={user.label} />
               </ListItemButton>
             </ListItem>
@@ -107,6 +125,7 @@ export default function App() {
             fullWidth
             error={!!errors.name}
             helperText={errors.name?.message}
+            InputLabelProps={{ shrink: true }}
           />
           <TextField
             {...register("email")}
@@ -114,6 +133,7 @@ export default function App() {
             fullWidth
             error={!!errors.email}
             helperText={errors.email?.message}
+            InputLabelProps={{ shrink: true }}
           />
           <RHFAutocomplete<Schema>
             name="states"
@@ -129,6 +149,7 @@ export default function App() {
             options={gendersQuery.data}
             label="Gender"
           />
+
           <RHFCheckbox<Schema>
             name="skills"
             options={skillsQuery.data}
@@ -166,6 +187,7 @@ export default function App() {
                             }
                             fullWidth
                             label="Name"
+                            InputLabelProps={{ shrink: true }}
                             key={field.id}
                           />
                           <Button
@@ -185,7 +207,7 @@ export default function App() {
           })()}
           <Stack sx={{ flexDirection: "row", justifyContent: "space-between" }}>
             <Button variant="contained" type="submit">
-              Submit
+              {variant === "create" ? "New User" : "Edit User"}
             </Button>
             <Button onClick={handleReset}>Reset</Button>
           </Stack>

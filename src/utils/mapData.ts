@@ -1,9 +1,7 @@
 import { ApiCommon, ApiCreateEdit } from "../types/apiTypes";
 import { Schema } from "../types/schema";
 
-export function mapData(
-  data: Schema
-): Omit<ApiCreateEdit, "variant"> & { id?: number } {
+export function mapData(data: Schema): ApiCreateEdit {
   const common: ApiCommon = {
     email: data.email,
     formerEmploymentPeriod: [
@@ -23,10 +21,10 @@ export function mapData(
 
   switch (data.variant) {
     case "create": {
-      return common;
+      return { ...common, variant: data.variant };
     }
     case "edit": {
-      return { ...common, id: Number(data.id) };
+      return { ...common, id: Number(data.id), variant: data.variant };
     }
   }
 }
