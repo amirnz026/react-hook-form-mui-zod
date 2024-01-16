@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { patterns } from "../constants";
+import { patterns } from "../../constants";
 
 export const schema = z.intersection(
   z.intersection(

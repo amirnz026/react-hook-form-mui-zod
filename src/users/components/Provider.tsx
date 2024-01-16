@@ -1,16 +1,12 @@
-import { ReactNode } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { defaultValues, Schema, schema } from "../types/schema";
+import Page from "./Page";
 
-interface Props {
-  children: ReactNode;
-}
-
-export default function Provider({ children }: Props) {
+export function Provider() {
   const methods = useForm<Schema>({
     mode: "all",
     resolver: zodResolver(schema),
@@ -20,8 +16,7 @@ export default function Provider({ children }: Props) {
 
   return (
     <FormProvider {...methods}>
-      {children}
-
+      <Page />
       <DevTool control={methods.control} />
     </FormProvider>
   );

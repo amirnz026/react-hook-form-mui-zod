@@ -3,8 +3,8 @@ import omit from "lodash/omit";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Schema } from "../users/types/schema";
-import { mapData } from "../users/utils/mapData";
+import { Schema } from "../types/schema";
+import { mapData } from "../utils/mapData";
 
 export function useCreateUser() {
   const queryClient = useQueryClient();
