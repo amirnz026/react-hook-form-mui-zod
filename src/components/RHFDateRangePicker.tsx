@@ -6,13 +6,9 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 interface Props<T extends FieldValues> {
   name: Path<T>;
-  label: string;
 }
 
-export function RHFDateRangePicker<T extends FieldValues>({
-  name,
-  label,
-}: Props<T>) {
+export function RHFDateRangePicker<T extends FieldValues>({ name }: Props<T>) {
   const { control } = useFormContext();
 
   return (

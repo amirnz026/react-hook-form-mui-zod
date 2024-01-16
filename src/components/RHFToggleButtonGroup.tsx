@@ -2,10 +2,10 @@ import { Controller, FieldValues, Path, useFormContext } from "react-hook-form";
 
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
-import { Options } from "../types/option";
+import { Option } from "../types/option";
 
 interface Props<T extends FieldValues> {
-  options: Options;
+  options?: Option[];
   name: Path<T>;
 }
 
@@ -26,10 +26,10 @@ export default function RHFToggleButtonGroup<T extends FieldValues>({
               onChange(newValue);
             }
           }}
-          value={value.length ? value : [options[0].id]}
+          value={value.length ? value : [options?.[0].id]}
           {...field}
         >
-          {options.map((option) => (
+          {options?.map((option) => (
             <ToggleButton value={option.id} key={option.id}>
               {option.label}
             </ToggleButton>

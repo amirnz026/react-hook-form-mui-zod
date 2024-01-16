@@ -9,10 +9,10 @@ import {
   FormLabel,
 } from "@mui/material";
 
-import { Options } from "../types/option";
+import { Option } from "../types/option";
 
 interface Props<T extends FieldValues> {
-  options: Options;
+  options?: Option[];
   name: Path<T>;
   label: string;
 }
@@ -32,7 +32,7 @@ export default function RHFCheckbox<T extends FieldValues>({
         <FormControl error={!!error}>
           <FormLabel>{label}</FormLabel>
           <FormGroup>
-            {options.map((option) => (
+            {options?.map((option) => (
               <FormControlLabel
                 control={
                   <Checkbox

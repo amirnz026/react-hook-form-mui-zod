@@ -9,10 +9,10 @@ import {
   RadioGroup,
 } from "@mui/material";
 
-import { Options } from "../types/option";
+import { Option } from "../types/option";
 
 interface Props<T extends FieldValues> {
-  options: Options;
+  options?: Option[];
   name: Path<T>;
   label: string;
 }
@@ -32,7 +32,7 @@ export default function RHFRadioGroup<T extends FieldValues>({
         <FormControl {...field} error={!!error}>
           <FormLabel>{label}</FormLabel>
           <RadioGroup>
-            {options.map((gender) => (
+            {options?.map((gender) => (
               <FormControlLabel
                 value={gender.id}
                 control={<Radio />}
