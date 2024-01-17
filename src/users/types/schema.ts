@@ -25,7 +25,7 @@ export const schema = z.intersection(
 
       formerEmploymentPeriod: z.array(z.date()).max(2),
 
-      salaryRange: z.array(z.number()),
+      salaryRange: z.array(z.number()).max(2),
     }),
     z.discriminatedUnion("isTeacher", [
       z.object({

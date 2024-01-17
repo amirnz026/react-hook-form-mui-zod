@@ -56,17 +56,17 @@ export default function Page() {
     control,
     handleSubmit,
     reset,
-    // watch
+    watch,
     // trigger
     // setValue
   } = useFormContext<Schema>();
 
-  // useEffect(() => {
-  //   const subscription = watch((value, { name, type }) =>
-  //     console.log(value, name, type)
-  //   );
-  //   return () => subscription.unsubscribe();
-  // }, [watch]);
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) =>
+      console.log(value, name, type)
+    );
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   useEffect(() => {
     reset(userQuery.data);

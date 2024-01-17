@@ -1,7 +1,7 @@
 import { Controller, FieldValues, Path, useFormContext } from "react-hook-form";
 
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 
 interface Props<T extends FieldValues> {
   name: Path<T>;
