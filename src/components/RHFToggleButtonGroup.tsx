@@ -19,7 +19,7 @@ export function RHFToggleButtonGroup<T extends FieldValues>({
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value, ...field } }) => (
+      render={({ field: { onChange, value, ...restField } }) => (
         <ToggleButtonGroup
           onChange={(_, newValue) => {
             if (newValue.length) {
@@ -27,7 +27,7 @@ export function RHFToggleButtonGroup<T extends FieldValues>({
             }
           }}
           value={value.length ? value : [options?.[0].id]}
-          {...field}
+          {...restField}
         >
           {options?.map((option) => (
             <ToggleButton value={option.id} key={option.id}>
