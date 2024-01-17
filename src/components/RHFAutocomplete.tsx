@@ -4,17 +4,18 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { Autocomplete, Box, Checkbox, TextField } from "@mui/material";
 
-import { Option } from "../users/types/option";
+import { Option } from "../types/option";
 
 interface Props<T extends FieldValues> {
   name: Path<T>;
   options?: Option[];
   label: string;
 }
+
 export function RHFAutocomplete<T extends FieldValues>({
+  label,
   name,
   options,
-  label,
 }: Props<T>) {
   const { control } = useFormContext<T>();
 
@@ -22,10 +23,10 @@ export function RHFAutocomplete<T extends FieldValues>({
     <Controller
       control={control}
       name={name}
-      render={({ field: { ref, onChange, value }, fieldState: { error } }) => (
+      render={({ field: { value, onChange, ref }, fieldState: { error } }) => (
         <Autocomplete
-          value={value.map((val: Pick<Option, "id">["id"]) =>
-            options?.find((item) => item.id === val)
+          value={value.map((id: Pick<Option, "id">["id"]) =>
+            options?.find((item) => item.id === id)
           )}
           getOptionLabel={(option) =>
             options?.find((item) => item.id === option.id)?.label ?? ""

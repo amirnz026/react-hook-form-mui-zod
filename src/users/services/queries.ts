@@ -2,8 +2,8 @@ import axios from "axios";
 
 import { useQuery } from "@tanstack/react-query";
 
+import { Option } from "../../types/option";
 import { ApiGet } from "../types/apiTypes";
-import { Option } from "../types/option";
 import { Schema } from "../types/schema";
 
 export function useStates() {
@@ -25,7 +25,6 @@ export function useLanguages() {
         .then((res) => res.data),
   });
 }
-
 export function useGenders() {
   return useQuery({
     queryKey: ["genders"],
@@ -35,7 +34,6 @@ export function useGenders() {
         .then((res) => res.data),
   });
 }
-
 export function useSkills() {
   return useQuery({
     queryKey: ["skills"],
@@ -46,6 +44,18 @@ export function useSkills() {
   });
 }
 
+export function useUsers() {
+  return useQuery({
+    queryKey: ["users"],
+    queryFn: (): Promise<Option[]> =>
+      axios.get<ApiGet[]>("http://localhost:8080/users").then((response) =>
+        response.data.map((user) => ({
+          id: user.id.toString(),
+          label: user.name,
+        }))
+      ),
+  });
+}
 export function useUser(id: string) {
   return useQuery({
     queryKey: ["user", { id }],
@@ -74,18 +84,5 @@ export function useUser(id: string) {
       };
     },
     enabled: !!id,
-  });
-}
-
-export function useUsers() {
-  return useQuery({
-    queryKey: ["users"],
-    queryFn: (): Promise<Option[]> =>
-      axios.get<ApiGet[]>("http://localhost:8080/users").then((response) =>
-        response.data.map((user) => ({
-          id: user.id.toString(),
-          label: user.name,
-        }))
-      ),
   });
 }

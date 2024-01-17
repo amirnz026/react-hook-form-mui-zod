@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import {
   FieldErrors,
   SubmitHandler,
@@ -43,23 +43,21 @@ export function Page() {
   const languagesQuery = useLanguages();
   const gendersQuery = useGenders();
   const skillsQuery = useSkills();
+  const usersQuery = useUsers();
+
   const createUserMutation = useCreateUser();
   const editUserMutation = useEditUser();
 
-  const [userId, setUserId] = useState("");
-  const userQuery = useUser(userId);
-  const usersQuery = useUsers();
-
   const {
     register,
-    formState: { errors },
     control,
-    handleSubmit,
+    formState: { errors },
     reset,
+    handleSubmit,
     watch,
     unregister,
-    // trigger
-    // setValue
+    setValue,
+    trigger,
   } = useFormContext<Schema>();
 
   useEffect(() => {
@@ -69,18 +67,15 @@ export function Page() {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  useEffect(() => {
-    reset(userQuery.data);
-  }, [reset, userQuery.data]);
+  const { append, fields, remove, replace } = useFieldArray({
+    control,
+    name: "students",
+  });
 
   const isTeacher = useWatch({ control, name: "isTeacher" });
   const variant = useWatch({ control, name: "variant" });
   const id = useWatch({ control, name: "id" });
-
-  const { fields, append, remove, replace } = useFieldArray({
-    control,
-    name: "students",
-  });
+  const userQuery = useUser(id);
 
   useEffect(() => {
     if (!isTeacher) {
@@ -89,12 +84,21 @@ export function Page() {
     }
   }, [isTeacher, replace, unregister]);
 
+  useEffect(() => {
+    reset(userQuery.data);
+  }, [reset, userQuery.data]);
+
   const handleReset = () => {
     reset(defaultValues);
   };
 
   const handleUserClick = (id: string) => {
-    setUserId(id);
+    setValue("id", id);
+  };
+
+  const handleNewStudentClick = () => {
+    append({ name: "" });
+    trigger("students");
   };
 
   const onSubmit: SubmitHandler<Schema> = (data) => {
@@ -120,6 +124,7 @@ export function Page() {
             </ListItem>
           ))}
         </List>
+
         <Stack sx={{ gap: 2 }}>
           <TextField
             {...register("name")}
@@ -151,7 +156,6 @@ export function Page() {
             options={gendersQuery.data}
             label="Gender"
           />
-
           <RHFCheckbox<Schema>
             name="skills"
             options={skillsQuery.data}
@@ -165,10 +169,11 @@ export function Page() {
           <RHFSlider<Schema> name="salaryRange" label="Salary Range" />
           <RHFSwitch<Schema> name="isTeacher" label="Are you a teacher?" />
           {isTeacher && (
-            <Button onClick={() => append({ name: "" })} type="button">
+            <Button onClick={handleNewStudentClick} type="button">
               Add new student
             </Button>
           )}
+
           {(() => {
             if (isTeacher) {
               const formErrors: FieldErrors<

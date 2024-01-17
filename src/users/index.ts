@@ -1,1 +1,1 @@
-export { Provider as Users } from "../users/components/Provider";
+export { Provider as Users } from "./components/Provider";

@@ -2,7 +2,7 @@ import { Controller, FieldValues, Path, useFormContext } from "react-hook-form";
 
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
-import { Option } from "../users/types/option";
+import { Option } from "../types/option";
 
 interface Props<T extends FieldValues> {
   options?: Option[];
