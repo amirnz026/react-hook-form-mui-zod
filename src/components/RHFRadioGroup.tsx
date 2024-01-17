@@ -17,7 +17,7 @@ interface Props<T extends FieldValues> {
   label: string;
 }
 
-export default function RHFRadioGroup<T extends FieldValues>({
+export function RHFRadioGroup<T extends FieldValues>({
   options,
   name,
   label,

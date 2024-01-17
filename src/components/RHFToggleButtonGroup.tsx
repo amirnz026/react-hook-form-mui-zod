@@ -9,7 +9,7 @@ interface Props<T extends FieldValues> {
   name: Path<T>;
 }
 
-export default function RHFToggleButtonGroup<T extends FieldValues>({
+export function RHFToggleButtonGroup<T extends FieldValues>({
   options,
   name,
 }: Props<T>) {

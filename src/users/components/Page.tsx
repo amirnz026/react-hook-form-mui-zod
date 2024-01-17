@@ -20,13 +20,13 @@ import {
 } from "@mui/material";
 
 import { RHFAutocomplete } from "../../components/RHFAutocomplete";
-import RHFCheckbox from "../../components/RHFCheckbox";
+import { RHFCheckbox } from "../../components/RHFCheckbox";
 import { RHFDateRangePicker } from "../../components/RHFDateRangePicker";
 import { RHFDateTimePicker } from "../../components/RHFDateTimePicker";
-import RHFRadioGroup from "../../components/RHFRadioGroup";
+import { RHFRadioGroup } from "../../components/RHFRadioGroup";
 import { RHFSlider } from "../../components/RHFSlider";
 import { RHFSwitch } from "../../components/RHFSwitch";
-import RHFToggleButtonGroup from "../../components/RHFToggleButtonGroup";
+import { RHFToggleButtonGroup } from "../../components/RHFToggleButtonGroup";
 import { useCreateUser, useEditUser } from "../services/mutations";
 import {
   useGenders,
@@ -38,7 +38,7 @@ import {
 } from "../services/queries";
 import { defaultValues, Schema } from "../types/schema";
 
-export default function Page() {
+export function Page() {
   const statesQuery = useStates();
   const languagesQuery = useLanguages();
   const gendersQuery = useGenders();
@@ -57,6 +57,7 @@ export default function Page() {
     handleSubmit,
     reset,
     watch,
+    unregister,
     // trigger
     // setValue
   } = useFormContext<Schema>();
@@ -84,8 +85,9 @@ export default function Page() {
   useEffect(() => {
     if (!isTeacher) {
       replace([]);
+      unregister("students");
     }
-  }, [isTeacher, replace]);
+  }, [isTeacher, replace, unregister]);
 
   const handleReset = () => {
     reset(defaultValues);

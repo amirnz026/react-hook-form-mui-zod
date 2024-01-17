@@ -1,5 +1,5 @@
 import { Users } from "./users";
 
-export default function App() {
+export function App() {
   return <Users />;
 }

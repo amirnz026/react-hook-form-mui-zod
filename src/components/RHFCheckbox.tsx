@@ -17,7 +17,7 @@ interface Props<T extends FieldValues> {
   label: string;
 }
 
-export default function RHFCheckbox<T extends FieldValues>({
+export function RHFCheckbox<T extends FieldValues>({
   options,
   name,
   label,
