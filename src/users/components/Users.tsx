@@ -86,7 +86,9 @@ export function Users() {
   }, [isTeacher, replace, unregister]);
 
   useEffect(() => {
-    reset(userQuery.data);
+    if (userQuery.data) {
+      reset(userQuery.data);
+    }
   }, [reset, userQuery.data]);
 
   const handleReset = () => {
