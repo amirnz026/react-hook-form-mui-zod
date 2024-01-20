@@ -4,9 +4,9 @@ import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { defaultValues, Schema, schema } from "../types/schema";
-import { Page } from "./Page";
+import { Users } from "./Users";
 
-export function Provider() {
+export function UsersProvider() {
   const methods = useForm<Schema>({
     mode: "all",
     resolver: zodResolver(schema),
@@ -15,7 +15,7 @@ export function Provider() {
 
   return (
     <FormProvider {...methods}>
-      <Page />
+      <Users />
       <DevTool control={methods.control} />
     </FormProvider>
   );

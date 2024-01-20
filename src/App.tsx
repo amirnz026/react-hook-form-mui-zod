@@ -1,5 +1,5 @@
-import { Users } from "./users";
+import { UsersProvider } from "./users/components/UsersProvider";
 
 export function App() {
-  return <Users />;
+  return <UsersProvider />;
 }

@@ -38,7 +38,7 @@ import {
 } from "../services/queries";
 import { defaultValues, Schema } from "../types/schema";
 
-export function Page() {
+export function Users() {
   const statesQuery = useStates();
   const languagesQuery = useLanguages();
   const gendersQuery = useGenders();
@@ -70,6 +70,7 @@ export function Page() {
   const { append, fields, remove, replace } = useFieldArray({
     control,
     name: "students",
+    shouldUnregister: true,
   });
 
   const isTeacher = useWatch({ control, name: "isTeacher" });
